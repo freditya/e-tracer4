@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <!-- Required meta tags-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="au theme template">
+        <meta name="author" content="Hau Nguyen">
+        <meta name="keywords" content="au theme template">
+
+        <!-- Title Page-->
+        <title>Tables</title>
+
+        <!-- Fontfaces CSS-->
+        <link th:href="@{/assets/css/font-face.css}" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/font-awesome-4.7/css/font-awesome.min.css}" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/font-awesome-5/css/fontawesome-all.min.css}" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/mdi-font/css/material-design-iconic-font.min.css}" rel="stylesheet" media="all">
+
+        <!-- Bootstrap CSS-->
+        <link th:href="@{/assets/vendor/bootstrap-4.1/bootstrap.min.css}" rel="stylesheet" media="all">
+
+        <!-- Vendor CSS-->
+        <link th:href="@{/assets/vendor/animsition/animsition.min.css}" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/wow/animate.css}" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/slick/slick.css}" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/select2/select2.min.css}" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet" media="all">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"> 
+        <!-- Main CSS-->
+        <link th:href="@{/assets/css/theme.css}" rel="stylesheet" media="all">
+
+    </head>
+
+    <body class="animsition">
+        <div class="page-wrapper">
+            <!-- HEADER MOBILE-->
+            <header class="header-mobile d-block d-lg-none">
+                <div class="header-mobile__bar">
+                    <div class="container-fluid">
+                        <div class="header-mobile-inner">
+                            <a class="logo" href="assets/index.html">
+                                <img th:src="@{/assets/images/icon/mii2.jpg}" alt="CoolAdmin" />
+                            </a>
+                            <button class="hamburger hamburger--slider" type="button">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <nav class="navbar-mobile">
+                    <div class="container-fluid">
+                        <ul class="navbar-mobile__list list-unstyled">
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+
+                            </li>
+                            <li>
+                                <a href="chart.html">
+                                    <i class="fas fa-chart-bar"></i>Charts</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <!-- END HEADER MOBILE-->
+
+            <!-- MENU SIDEBAR-->
+            <aside class="menu-sidebar d-none d-lg-block">
+                <div class="logo">
+                    <a href="#">
+                        <img th:src="@{/assets/images/icon/mii2.jpg}" alt="Cool Admin" />
+                    </a>
+                </div>
+                <div class="menu-sidebar__content js-scrollbar1">
+                    <nav class="navbar-sidebar">
+                        <ul class="list-unstyled navbar__list">
+                            <li class="has-sub">
+                                <a class="js-arrow" th:href="@{/admin}">
+                                    <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                            </li>
+                            <li class="hs-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-edit"></i>Management Data </a>
+                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+
+                                    <li>
+                                        <a th:href="@{/assessment}">Assessment</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/department}">Department</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/eval_parameter}">Evaluation</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/score}">Score</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/category}">Category</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/site}">Site</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/job}">Job</a>
+                                    </li>
+                                </ul>
+
+                            </li>
+
+                            <li class="hs-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-users"></i>Users </a>
+                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <li>
+                                        <a th:href="@{/employee}">Employee</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/user_role}">User Role</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="hs-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-map-marker"></i>Location</a>
+                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <li>
+                                        <a th:href="@{/province}">Province</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/district}">District</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/subdistrict}">Sub District</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/village}">Village</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+            <!-- END MENU SIDEBAR-->
+
+            <!-- PAGE CONTAINER-->
+            <div class="page-container">
+                <!-- HEADER DESKTOP-->
+                <header class="header-desktop">
+                    <div class="section__content section__content--p30">
+                        <div class="container-fluid">
+                            <div class="header-wrap">
+                                <form class="form-header" action="" method="POST">
+                                    <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                                    <button class="au-btn--submit" type="submit">
+                                        <i class="zmdi zmdi-search"></i>
+                                    </button>
+                                </form>
+                                <div class="header-button">
+                                    <div class="noti-wrap">
+                                        <div class="noti__item js-item-menu">
+                                            <i class="zmdi zmdi-notifications"></i>
+                                            <span class="quantity">3</span>
+                                            <div class="notifi-dropdown js-dropdown">
+                                                <div class="notifi__title">
+                                                    <p>You have 3 Notifications</p>
+                                                </div>
+                                                <div class="notifi__item">
+                                                    <div class="bg-c1 img-cir img-40">
+                                                        <i class="zmdi zmdi-email-open"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <p>You got a email notification</p>
+                                                        <span class="date">April 12, 2018 06:50</span>
+                                                    </div>
+                                                </div>
+                                                <div class="notifi__item">
+                                                    <div class="bg-c2 img-cir img-40">
+                                                        <i class="zmdi zmdi-account-box"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <p>Your account has been blocked</p>
+                                                        <span class="date">April 12, 2018 06:50</span>
+                                                    </div>
+                                                </div>
+                                                <div class="notifi__item">
+                                                    <div class="bg-c3 img-cir img-40">
+                                                        <i class="zmdi zmdi-file-text"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <p>You got a new file</p>
+                                                        <span class="date">April 12, 2018 06:50</span>
+                                                    </div>
+                                                </div>
+                                                <div class="notifi__footer">
+                                                    <a href="#">All notifications</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="account-wrap">
+                                        <div class="account-item clearfix js-item-menu">
+                                            <div class="image">
+                                                <img th:src="@{/assets/images/icon/avatar-01.jpg}" alt="John Doe" />
+                                            </div>
+                                            <div class="content">
+                                                <a class="js-acc-btn" href="#">john doe</a>
+                                            </div>
+                                            <div class="account-dropdown js-dropdown">
+                                                <div class="info clearfix">
+                                                    <div class="image">
+                                                        <a href="#">
+                                                            <img th:src="@{/assets/images/icon/avatar-01.jpg}" alt="John Doe" />
+                                                        </a>
+                                                    </div>
+                                                    <div class="content">
+                                                        <h5 class="name">
+                                                            <a href="#">john doe</a>
+                                                        </h5>
+                                                        <span class="email">johndoe@example.com</span>
+                                                    </div>
+                                                </div>
+                                                <div class="account-dropdown__body">
+                                                    <div class="account-dropdown__item">
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-account"></i>Account</a>
+                                                    </div>
+                                                    <div class="account-dropdown__item">
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-settings"></i>Setting</a>
+                                                    </div>
+                                                </div>
+                                                <div class="account-dropdown__footer">
+                                                    <a th:href="@{/logout}">
+                                                        <i class="zmdi zmdi-power">
+
+                                                        </i>Logout</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <!-- END HEADER DESKTOP-->
+
+                <!-- MAIN CONTENT-->
+                <div layout:fragment="content">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Jquery JS-->
+        <script th:src="@{/assets/vendor/jquery-3.2.1.min.js}"></script>
+        <!--datatable-->
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <!-- Bootstrap JS-->
+        <script th:src="@{/assets/vendor/bootstrap-4.1/popper.min.js}"></script>
+        <script th:src="@{/assets/vendor/bootstrap-4.1/bootstrap.min.js}"></script>
+        <!-- Vendor JS       -->
+        <script th:src="@{/assets/vendor/slick/slick.min.js}">
+        </script>
+        <script th:src="@{/assets/vendor/wow/wow.min.js}"></script>
+        <script th:src="@{/assets/vendor/animsition/animsition.min.js}"></script>
+        <script th:src="@{/assets/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js}">
+        </script>
+        <script th:src="@{/assets/vendor/counter-up/jquery.waypoints.min.js}"></script>
+        <script th:src="@{/assets/vendor/counter-up/jquery.counterup.min.js}">
+        </script>
+        <script th:src="@{/assets/vendor/circle-progress/circle-progress.min.js}"></script>
+        <script th:src="@{/assets/vendor/perfect-scrollbar/perfect-scrollbar.js}"></script>
+        <script th:src="@{/assets/vendor/chartjs/Chart.bundle.min.js}"></script>
+        <script th:src="@{/assets/vendor/select2/select2.min.js}">
+        </script>
+
+        <!-- Main JS-->
+        <script th:src="@{/assets/js/main.js}"></script> 
+
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $("#edit-department").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _departmentId = _row.find("#department_id").text();
+                    var _departmentName = _row.find("#department_name").text();
+                    var _villageId = _row.find("#village_id").text();
+                    var _employeeId = _row.find("#employee_id").text();
+
+                    $(this).find("#department_id").val(_departmentId);
+                    $(this).find("#department_name").val(_departmentName);
+                    $(this).find("#village_id").val(_villageId);
+                    $(this).find("#employee_id").val(_employeeId);
+                })
+            })
+        </script><!--
+        
+        -->                <script>
+            $(document).ready(function () {
+                $("#delete-department").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _departmentId = _row.find("#department_id").text();
+                    var _departmentName = _row.find("#department_name").text();
+                    var _villageId = _row.find("#village_id").text();
+                    var _employeeId = _row.find("#employee_id").text();
+
+                    $(this).find("#department_id").val(_departmentId);
+                    $(this).find("#department_name").val(_departmentName);
+                    $(this).find("#village_id").val(_villageId);
+                    $(this).find("#employee_id").val(_employeeId);
+
+                    //                    alert($(this).find("#actor_Id").text());
+                    //                    alert($(this).find("#first_Name").text());
+
+                })
+            })
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#edit-eval").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _evaluationId = _row.find("#evaluation_id").text();
+                    var _evaluationName = _row.find("#evaluation_name").text();
+
+                    $(this).find("#evaluation_id").val(_evaluationId);
+                    $(this).find("#evaluation_name").val(_evaluationName);
+
+
+
+                })
+            })
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#delete-eval").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _evaluationId = _row.find("#evaluation_id").text();
+                    var _evaluationName = _row.find("#evaluation_name").text();
+
+                    $(this).find("#evaluation_id_").val(_evaluationId);
+                    $(this).find("#evaluation_name_").val(_evaluationName);
+
+
+
+                })
+            })
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#edit-score").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _scoreId = _row.find("#score_id").text();
+                    var _score = _row.find("#score_").text();
+                    var _evaluationId = _row.find("#evaluation_id").text();
+
+                    $(this).find("#score_id").val(_scoreId);
+                    $(this).find("#score_").val(_score);
+                    $(this).find("#evaluation_id").val(_evaluationId);
+
+
+
+                })
+            })
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#delete-eval").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _evaluationId = _row.find("#evaluation_id").text();
+                    var _evaluationName = _row.find("#evaluation_name").text();
+
+                    $(this).find("#evaluation_id_").val(_evaluationId);
+                    $(this).find("#evaluation_name_").val(_evaluationName);
+
+
+
+                })
+            })
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#edit-category").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _categoryId = _row.find("#categoryId").text();
+                    var _assessmentId = _row.find("#assessmentId").text();
+                    var _evaluationId = _row.find("#evaluationId").text();
+                    var _employeeId = _row.find("#employeeId").text();
+
+                    $(this).find("#categoryId").val(_categoryId);
+                    $(this).find("#assessmentId").val(_assessmentId);
+                    $(this).find("#evaluationId").val(_evaluationId);
+                    $(this).find("#employeeId").val(_employeeId);
+
+//                    alert($(this).find("#actor_Id").text());
+//                    alert($(this).find("#first_Name").text());
+
+                })
+            })
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#delete-category").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _categoryId = _row.find("#categoryId").text();
+                    var _assessmentId = _row.find("#assessmentId").text();
+                    var _evaluationId = _row.find("#evaluationId").text();
+                    var _employeeId = _row.find("#employeeId").text();
+
+                    $(this).find("#categoryId").val(_categoryId);
+                    $(this).find("#assessmentId").val(_assessmentId);
+                    $(this).find("#evaluationId").val(_evaluationId);
+                    $(this).find("#employeeId").val(_employeeId);
+                })
+            })
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#edit-site").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _siteId = _row.find("#siteId").text();
+                    var _siteName = _row.find("#siteName").text();
+                    var _villageId = _row.find("#villageId").text();
+                    var _employeeId = _row.find("#employeeId").text();
+
+                    $(this).find("#siteId").val(_siteId);
+                    $(this).find("#siteName").val(_siteName);
+                    $(this).find("#villageId").val(_villageId);
+                    $(this).find("#employeeId").val(_employeeId);
+
+                })
+            })
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#delete-site").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _siteId = _row.find("#siteId").text();
+                    var _siteName = _row.find("#siteName").text();
+                    var _villageId = _row.find("#villageId").text();
+                    var _employeeId = _row.find("#employeeId").text();
+
+                    $(this).find("#siteId").val(_siteId);
+                    $(this).find("#siteName").val(_siteName);
+                    $(this).find("#villageId").val(_villageId);
+                    $(this).find("#employeeId").val(_employeeId);
+
+                })
+            })
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#edit-job").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _jobId = _row.find("#jobId").text();
+                    var _jobName = _row.find("#jobName").text();
+                    var _villageId = _row.find("#villageId").text();
+                    var _employeeId = _row.find("#employeeId").text();
+
+                    $(this).find("#jobId").val(_jobId);
+                    $(this).find("#jobName").val(_jobName);
+                    $(this).find("#villageId").val(_villageId);
+                    $(this).find("#employeeId").val(_employeeId);
+
+                })
+            })
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#delete-job").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _jobId = _row.find("#jobId").text();
+                    var _jobName = _row.find("#jobName").text();
+                    var _villageId = _row.find("#villageId").text();
+                    var _employeeId = _row.find("#employeeId").text();
+
+                    $(this).find("#jobId").val(_jobId);
+                    $(this).find("#jobName").val(_jobName);
+                    $(this).find("#villageId").val(_villageId);
+                    $(this).find("#employeeId").val(_employeeId);
+
+                })
+            })
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#edit-employee").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _employeeId = _row.find("#employee_id").text();
+                    var _employeeName = _row.find("#employee_name").text();
+                    var _address = _row.find("#address_").text();
+                    var _dateOfBirth = _row.find("#dateOfBirth_").text();
+                    var _dateOfJoin = _row.find("#dateOfJoin_").text();
+                    var _managerId = _row.find("#manager_id").text();
+                    var _salary = _row.find("#salary_").text();
+                    var _gender = _row.find("#gender_").text();
+                    var _phone = _row.find("#phone_").text();
+                    var _email = _row.find("#email_").text();
+                    var _departmentId = _row.find("#department_id").text();
+                    var _jobId = _row.find("#job_id").text();
+                    var _password = _row.find("#password_").text();
+
+                    $(this).find("#employee_id").val(_employeeId);
+                    $(this).find("#employee_name").val(_employeeName);
+                    $(this).find("#address_").val(_address);
+                    $(this).find("#dateOfBirth_").val(_dateOfBirth);
+                    $(this).find("#dateOfJoin_").val(_dateOfJoin);
+                    $(this).find("#manager_id").val(_managerId);
+                    $(this).find("#salary_").val(_salary);
+                    $(this).find("#gender_").val(_gender);
+                    $(this).find("#phone_").val(_phone);
+                    $(this).find("#email_").val(_email);
+                    $(this).find("#department_id").val(_departmentId);
+                    $(this).find("#job_id").val(_jobId);
+                    $(this).find("#password_").val(_password);
+
+                    //                    alert($(this).find("#actor_Id").text());
+                    //                    alert($(this).find("#first_Name").text());
+
+                })
+            })
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $("#delete-employee").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _employeeId = _row.find("#employee_id").text();
+                    var _employeeName = _row.find("#employee_name").text();
+                    var _address = _row.find("#address_").text();
+                    var _dateOfBirth = _row.find("#dateOfBirth_").text();
+                    var _dateOfJoin = _row.find("#dateOfJoin_").text();
+                    var _managerId = _row.find("#manager_id").text();
+                    var _salary = _row.find("#salary_").text();
+                    var _gender = _row.find("#gender_").text();
+                    var _phone = _row.find("#phone_").text();
+                    var _email = _row.find("#email_").text();
+                    var _departmentId = _row.find("#department_id").text();
+                    var _jobId = _row.find("#job_id").text();
+                    var _password = _row.find("#password_").text();
+
+                    $(this).find("#employee_id").val(_employeeId);
+                    $(this).find("#employee_name").val(_employeeName);
+                    $(this).find("#address_").val(_address);
+                    $(this).find("#dateOfBirth_").val(_dateOfBirth);
+                    $(this).find("#dateOfJoin_").val(_dateOfJoin);
+                    $(this).find("#manager_id").val(_managerId);
+                    $(this).find("#salary_").val(_salary);
+                    $(this).find("#gender_").val(_gender);
+                    $(this).find("#phone_").val(_phone);
+                    $(this).find("#email_").val(_email);
+                    $(this).find("#department_id").val(_departmentId);
+                    $(this).find("#job_id").val(_jobId);
+                    $(this).find("#password_").val(_password);
+
+                    //                    alert($(this).find("#actor_Id").text());
+                    //                    alert($(this).find("#first_Name").text());
+
+                })
+            })
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#detail-employee").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _employeeId = _row.find("#employee_id").text();
+                    var _employeeName = _row.find("#employee_name").text();
+                    var _address = _row.find("#address_").text();
+                    var _dateOfBirth = _row.find("#dateOfBirth_").text();
+                    var _dateOfJoin = _row.find("#dateOfJoin_").text();
+                    var _managerId = _row.find("#manager_name").text();
+                    var _salary = _row.find("#salary_").text();
+                    var _gender = _row.find("#gender_").text();
+                    var _phone = _row.find("#phone_").text();
+                    var _email = _row.find("#email_").text();
+                    var _departmentId = _row.find("#department_name").text();
+                    var _jobId = _row.find("#job_name").text();
+                    var _password = _row.find("#password_").text();
+
+                    $(this).find("#employee_id").val(_employeeId);
+                    $(this).find("#employee_name").val(_employeeName);
+                    $(this).find("#address_").val(_address);
+                    $(this).find("#dateOfBirth_").val(_dateOfBirth);
+                    $(this).find("#dateOfJoin_").val(_dateOfJoin);
+                    $(this).find("#manager_name").val(_managerId);
+                    $(this).find("#salary_").val(_salary);
+                    $(this).find("#gender_").val(_gender);
+                    $(this).find("#phone_").val(_phone);
+                    $(this).find("#email_").val(_email);
+                    $(this).find("#department_name").val(_departmentId);
+                    $(this).find("#job_name").val(_jobId);
+                    $(this).find("#password_").val(_password);
+
+                    //                    alert($(this).find("#actor_Id").text());
+                    //                    alert($(this).find("#first_Name").text());
+
+                })
+            })
+        </script>
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#edit-user_role").on('show.bs.modal', function (e) {
+                var _button = $(e.relatedTarget);
+                var _row = _button.parents("tr");
+
+                var _id = _row.find("#id_").text();
+                var _employeeId = _row.find("#employee_id").text();
+                var _roleId = _row.find("#role_id").text();
+
+                $(this).find("#id_").val(_id);
+                $(this).find("#employeeId").val(_employeeId);
+                $(this).find("#roleId").val(_roleId);
+
+
+
+            })
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#edit-province").on('show.bs.modal', function (e) {
+                var _button = $(e.relatedTarget);
+                var _row = _button.parents("tr");
+
+                var _provinceId = _row.find("#province_Id").text();
+                var _provinceName = _row.find("#province_Name").text();
+
+                $(this).find("#province_Id").val(_provinceId);
+                $(this).find("#province_Name").val(_provinceName);
+
+//                    alert($(this).find("#actor_Id").text());
+//                    alert($(this).find("#first_Name").text());
+
+            })
+        })
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#delete-province").on('show.bs.modal', function (e) {
+                var _button = $(e.relatedTarget);
+                var _row = _button.parents("tr");
+
+                var _provinceId = _row.find("#province_Id").text();
+                var _provinceName = _row.find("#province_Name").text();
+
+                $(this).find("#province_id").val(_provinceId);
+                $(this).find("#province_name").val(_provinceName);
+
+//                    alert($(this).find("#actor_Id").text());
+//                    alert($(this).find("#first_Name").text());
+
+            })
+        })
+    </script>
+    <script>
+            $(document).ready(function () {
+                $("#edit-district").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _districtId = _row.find("#district_id").text();
+                    var _districtName = _row.find("#district_name").text();
+                    var _provinceId = _row.find("#province_id").text();
+
+                    $(this).find("#district_id").val(_districtId);
+                    $(this).find("#district_name").val(_districtName);
+                    $(this).find("#province_id").val(_provinceId);
+
+//                    alert($(this).find("#actor_Id").text());
+//                    alert($(this).find("#first_Name").text());
+
+                })
+            })
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#delete-district").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _districtId = _row.find("#district_id").text();
+                    var _districtName = _row.find("#district_name").text();
+                    var _provinceId = _row.find("#province_id").text();
+
+                    $(this).find("#district_id").val(_districtId);
+                    $(this).find("#district_name").val(_districtName);
+                    $(this).find("#province_id").val(_provinceId);
+
+                    //                    alert($(this).find("#actor_Id").text());
+                    //                    alert($(this).find("#first_Name").text());
+
+                })
+            })
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#edit-subdistrict").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _subDistrictId = _row.find("#subDistrictId").text();
+                    var _subDistrictName = _row.find("#subDistrictName").text();
+                    var _districtId = _row.find("#districtId").text();
+
+                    $(this).find("#subDistrictId").val(_subDistrictId);
+                    $(this).find("#subDistrictName").val(_subDistrictName);
+                    $(this).find("#districtId").val(_districtId);
+
+                })
+            })
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#delete-subdistrict").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                     var _subDistrictId = _row.find("#subDistrictId").text();
+                    var _subDistrictName = _row.find("#subDistrictName").text();
+                    var _districtId = _row.find("#districtId").text();
+
+                    $(this).find("#subDistrictId").val(_subDistrictId);
+                    $(this).find("#subDistrictName").val(_subDistrictName);
+                    $(this).find("#districtId").val(_districtId);
+
+                })
+            })
+        </script>
+
+</body>
+
+
+</html>
+<!-- end document-->

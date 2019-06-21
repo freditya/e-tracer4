@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/admin/layout}">
+
+    <head>
+        <!-- Required meta tags-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="au theme template">
+        <meta name="author" content="Hau Nguyen">
+        <meta name="keywords" content="au theme template">
+
+        <!-- Title Page-->
+        <title>Tables</title>
+    </head>
+
+    <body class="animsition">
+        <!-- HEADER MOBILE-->
+
+        <!-- END HEADER MOBILE-->
+
+
+        <!-- PAGE CONTAINER-->
+        <div layout:fragment="content">
+            <!-- HEADER DESKTOP-->
+            <!-- END HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">User Role  </li>
+
+                                    </ol>
+                                </nav>
+                                <div class="overview-wrap" style="padding-bottom: 20px">
+                                    <h2 class="title-1">User Role</h2>
+                                    <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#input-user_role"><i class="fa fa-plus"></i>
+                                        Add Data</button>
+                                </div>
+                                <div class="table-responsive table--no-card m-b-30">
+                                    <table  id="example" class="table table-borderless table-striped table-data3">
+                                        <thead>
+                                            <tr>
+                                                <th>Action</th>
+                                                <th>ID</th>
+                                                <th>Username</th>
+                                                <th style="display:none;">Role</th>
+                                                <th style="display:none;">Role</th>
+                                                <th>Role</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each = "data:${datauserRole}">
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-user_role"><i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#delete-province"><i class="fa fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                                <td id="id_" th:text="${data.Id}"></td>
+                                                <td id="employee_id" th:text="${data.employeeId.employeeId}" style="display:none;"></td>
+                                                <td th:text="${data.employeeId.employeeName}"></td>
+                                                <td id="role_id" th:text="${data.roleId.roleId}" style="display:none;"></td>
+                                                <td th:text="${data.roleId.roleName}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-30">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE-->
+
+                                <!-- END DATA TABLE-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2019 Bootcamp25. All rights reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Modal input Dialog--> 
+            <div class="modal fade" id="input-user_role" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add User Role</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <form th:action="@{/user_role/addData}" method="post">
+                            <input type="hidden" class="form-control" id="isDelete" name="isDelete" value="false">
+
+                            <div class="form-group required">
+                                <label for="employeeId" class="col-form-label col-md-4">Employee</label>
+                                <div class="col-md-10">
+                                    <select type="text" name="employeeId" id="employeeId" class="form-control">
+                                        <option value="0">-PILIH-</option>
+                                        <option th:each="data:${dataEmployee}" th:value="${data.employeeId}" th:text="${data.employeeName}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label for="roleId" class="col-form-label col-md-4">Role</label>
+                                <div class="col-md-10">
+                                    <select type="text" name="roleId" id="roleId" class="form-control">
+                                        <option value="0">-PILIH-</option>
+                                        <option th:each="data:${dataRole}" th:value="${data.roleId}" th:text="${data.roleName}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-success" id="confirm">Save</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--Modal edit Dialog--> 
+            <div class="modal fade" id="edit-user_role" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Update User Role</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <form th:action="@{/user_role/update_role}" method="get">
+                            <input type="hidden" class="form-control" id="id_" name="id" placeholder="Identity">
+                            <input type="hidden" class="form-control" id="isDelete" name="isDelete" value="false">
+
+                            <div class="form-group required">
+                                <label for="employeeId" class="col-form-label col-md-4">Employee</label>
+                                <div class="col-md-10">
+                                    <select type="text" name="employeeId" id="employeeId" class="form-control">
+                                        <option value="0">-PILIH-</option>
+                                        <option th:each="data:${dataEmployee}" th:value="${data.employeeId}" th:text="${data.employeeName}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label for="roleId" class="col-form-label col-md-4">Role</label>
+                                <div class="col-md-10">
+                                    <select type="text" name="roleId" id="roleId" class="form-control">
+                                        <option value="0">-PILIH-</option>
+                                        <option th:each="data:${dataRole}" th:value="${data.roleId}" th:text="${data.roleName}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-success" id="confirm">Update</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </body>
+
+
+</html>
+<!-- end document-->

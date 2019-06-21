@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Etracer - Home</title>
+        <link rel="icon" th:src="@{/assets/img/Fevicon.png}" type="image/png">
+
+        <link rel="stylesheet" th:href="@{/assets/vendors/bootstrap/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/assets/vendors/fontawesome/css/all.min.css}">
+        <link rel="stylesheet" th:href="@{/assets/vendors/themify-icons/themify-icons.css}">
+        <link rel="stylesheet" th:href="@{/assets/vendors/linericon/style.css}">
+        <link rel="stylesheet" th:href="@{/assets/vendors/owl-carousel/owl.theme.default.min.css}">
+        <link rel="stylesheet" th:href="@{/assets/vendors/owl-carousel/owl.carousel.min.css}">
+        <link rel="stylesheet" th:href="@{/assets/vendors/flat-icon/font/flaticon.css}">
+        <link rel="stylesheet" th:href="@{/assets/vendors/nice-select/nice-select.css}">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+        <link rel="stylesheet" th:href="@{/assets/css2/style.css}">
+    </head>
+    <body class="bg-shape">
+
+        <!--================ Header Menu Area start =================-->
+        <header class="header_area">
+            <div class="main_menu">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="container box_1620">
+                        <a class="navbar-brand logo_h" th:href="@{/trainer}"><img th:src="@{/assets/img/mii.png}" alt="" width="150px" height="100px"></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav menu_nav justify-content-end">
+                                <li class="nav-item active"><a class="nav-link" th:href="@{/trainer}">Home</a></li> 
+                                <li class="nav-item"><a class="nav-link" th:href="@{/department}">Department</a></li> 
+                                <li class="nav-item"><a class="nav-link" th:href="@{/emp}">Employee</a>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       aria-expanded="false">Location</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" th:href="@{/province}">Province</a>                 
+                                        <li class="nav-item"><a class="nav-link" th:href="@{/district}">District</a>                 
+                                        <li class="nav-item"><a class="nav-link" th:href="@{/subdistrict}">Sub District</a>                 
+                                        <li class="nav-item"><a class="nav-link" th:href="@{/village}">Village</a>                 
+                                    </ul>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" th:href="@{/site}">Site</a></li>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       aria-expanded="false">Feedback</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" th:href="@{/report}">Report Problem</a>                 
+                                        <li class="nav-item"><a class="nav-link" th:href="@{/respond}">Respond Problem</a>                                  
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <div class="nav-right text-center text-lg-right py-4 py-lg-0">
+                                <a class="button" href="#">Login</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!--================Hero Banner SM Area Start =================-->
+        <section class="hero-banner" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 0px -80px" data-top-bottom="background-position: 0 100px">
+            <div class="container">
+                <div class="hero-banner-sm-content">
+                    <h1>Report Problem</h1>
+                </div>
+                <div class="table-responsive table--no-card m-b-30">
+                    <table id="example" class="table table-borderless table-striped table-data3">
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>ID</th>
+                                <th>Message</th>
+                                <th>Date</th>
+                                <th>Employee</th>
+                                <th style="display:none;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each = "data:${dataReport}">
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#add-respond"><i class="fa fa-reply"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#delete-employee"><i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                                <td id="report_id" th:text="${data.reportId}"></td>
+                                <td id="report_message" th:text="${data.reportMessage}"></td>
+                                <td id="date" th:text="${data.reportDate}"></td>
+                                <td id="employee_id" th:text="${data.employeeId.employeeId}" style="display:none;"></td>
+                                <td  th:text="${data.employeeId.employeeName}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+        
+                <section class="section-padding bg-gray">
+            <div class="container">
+                <div class="section-intro text-center pb-90px">
+                    <img class="section-intro-img" th:src="@{/assets/img/home/section-icon.png}" alt="">
+                    <h2>E-tracer</h2>
+                    <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved by Bootcamp 25</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!--Modal edit Dialog--> 
+        <div class="modal fade" id="add-respond" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Reply Respond</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    
+                    <form th:action="@{/respond/addData}" method="post">
+
+
+                        <div class="form-group required">
+                                <input type="hidden" class="form-control" id="" value="0" name="respondId">
+                                <input type="hidden" class="form-control" id="report_id" name="reportId">
+                        </div>
+                        
+                        <div class="form-group required">
+                            <label for="employeeId" class="col-form-label col-md-4" readonly="">Employee</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="employee_id" name="employeeId">
+                            </div>
+                            <input type="hidden" class="form-control" id="isDelete" name="isDelete" value="false" placeholder="isDelete">
+                        </div>
+                        
+                       
+                        <div class="form-group required">
+                            <label for="reportId" class="col-form-label col-md-4">Report</label>
+                            <div class="col-md-10">
+                                <textarea type="text" class="form-control" id="report_message" readonly=""></textarea>
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="form-group required">
+                            <label for="respondMessage" class="col-form-label col-md-6">Message</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" id="respond_message" name="respondMessage" placeholder="Message here"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success" id="confirm">Reply</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!--delete-->
+        <div class="delete-form">
+            <form th:action="@{/employee/update}" method="get">
+                <div class="modal fade" id="delete-employee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" class="form-control" id="employee_id" name="employeeId" placeholder="Employee Identity">
+                                <input type="hidden" class="form-control" id="employee_name" name="employeeName" placeholder="Employee Name">
+                                <input type="hidden" class="form-control" id="address_" name="address" placeholder="Address">
+                                <input type="hidden" class="form-control" id="dateOfBirth_" name="dateOfBirth" placeholder="Birth">
+                                <input type="hidden" class="form-control" id="dateOfJoin_" name="dateOfJoin" placeholder="Join Date">
+                                <input type="hidden" name="managerId" id="manager_id" class="form-control">
+
+                                <input type="hidden" class="form-control" id="salary_" name="salary" placeholder="Salary">
+                                <input type="hidden" class="form-control" id="phone_" name="phone" placeholder="Phone">
+                                <input type="hidden" class="form-control" id="email_" name="email" placeholder="Email">
+                                <input type="hidden" class="form-control" id="password_" name="password" placeholder="Password">
+                                <input type="hidden" id="department_id" name="departmentId" class="form-control">
+
+                                <input type="hidden" name="jobId" id="job_id" class="form-control" >
+
+                                <input type="hidden" name="gender" id="gender_" class="form-control">
+
+
+                                <input type="hidden" class="form-control" id="isDelete" value="true" name="isDelete" placeholder="Delete">
+                                Anda yakin ingin menghapus data ini?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Delete" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <script th:src="@{/assets/vendor/jquery-3.2.1.min.js}"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script th:href="@{/assets/vendors/bootstrap/bootstrap.bundle.min.js}"></script>
+        <script th:href="@{/assets/vendors/owl-carousel/owl.carousel.min.js}"></script>
+        <script th:href="@{/assets/vendors/nice-select/jquery.nice-select.min.js}"></script>
+        <script th:href="@{/assets/js2/jquery.ajaxchimp.min.js}"></script>
+        <script th:href="@{/assets/js2/mail-script.js}"></script>
+        <script th:href="@{/assets/js2/skrollr.min.js}"></script>
+        <script th:href="@{/assets/js2/main.js}"></script>
+
+        <!-- Main JS-->
+        <script th:src="@{/assets/js/main.js}"></script>
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#add-respond").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _reportId = _row.find("#report_id").text();
+                    var _reportMessage = _row.find("#report_message").text();
+                    var _employeeId = _row.find("#employee_id").text();
+//                    var _reportId = _row.find("#report_id").text();
+
+                    $(this).find("#report_id").val(_reportId);
+                    $(this).find("#report_message").val(_reportMessage);
+                    $(this).find("#employee_id").val(_employeeId);
+//                    $(this).find("#report_id").val(_reportId);
+
+                    //                    alert($(this).find("#actor_Id").text());
+                    //                    alert($(this).find("#first_Name").text());
+
+                })
+            })
+        </script>
+    </body>
+</html>

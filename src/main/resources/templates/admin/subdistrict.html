@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/admin/layout}">
+
+    <head>
+        <!-- Required meta tags-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="au theme template">
+        <meta name="author" content="Hau Nguyen">
+        <meta name="keywords" content="au theme template">
+
+        <!-- Title Page-->
+        <title>Tables</title>
+    </head>
+
+    <body class="animsition">
+        <!-- HEADER MOBILE-->
+
+        <!-- END HEADER MOBILE-->
+
+
+        <!-- PAGE CONTAINER-->
+        <div layout:fragment="content">
+            <!-- HEADER DESKTOP-->
+            <!-- END HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Sub District  </li>
+
+                                    </ol>
+                                </nav>
+                                <div class="overview-wrap" style="padding-bottom: 20px">
+                                    <h2 class="title-1">Sub District</h2>
+                                    <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#input-subdistrict"><i class="fa fa-plus"></i>
+                                        Add Data</button>
+                                </div>
+                                <div class="table-responsive table--no-card m-b-30">
+                                    <table id="example" class="table table-borderless table-striped table-data3">
+                                        <thead>
+                                            <tr>
+                                                <th>Action</th>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>District</th>
+                                                <th style="display:none;"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each = "data:${dataSubDistrict}">
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-subdistrict"><i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#delete-subdistrict"><i class="fa fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                                <td id="subDistrictId" th:text="${data.subDistrictId}"></td>
+                                                <td id="subDistrictName" th:text="${data.subDistrictName}"></td>
+                                                <td id="districtId" th:text="${data.districtId.districtId}" style="display:none;"></td>
+                                                <td th:text="${data.districtId.districtName}" ></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-30">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE-->
+
+                                <!-- END DATA TABLE-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2019 Bootcamp25. All rights reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Modal input Dialog--> 
+            <div class="modal fade" id="input-subdistrict" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add Sub District</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <form th:action="@{/subdistrict/addData}" method="post">
+                            <input type="hidden" class="form-control" id="isDelete" name="isDelete" value="false">
+                            <input type="hidden" class="form-control" id="subDistrictId" name="subDistrictId" placeholder="subDistrict Identity">
+
+                            <div class="form-group required">
+                                <label for="subdistrictName" class="col-form-label col-md-4">Name</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="subDistrictName" name="subDistrictName" placeholder="subDistrict Name">
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label for="districtId" class="col-form-label col-md-4">District</label>
+                                <div class="col-md-10">
+                                    <select type="text" name="districtId" id="districtId" class="form-control">
+                                        <option value="0">-PILIH-</option>
+                                        <option th:each="data:${dataDistrict}" th:value="${data.districtId}" th:text="${data.districtName}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-success" id="confirm">Save</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--Modal edit Dialog--> 
+            <div class="modal fade" id="edit-subdistrict" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Update Sub District</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <form th:action="@{/subdistrict/update}" method="get">
+                            <input type="hidden" class="form-control" id="isDelete" name="isDelete" value="false">
+                            <input type="hidden" class="form-control" id="subDistrictId" name="subDistrictId" placeholder="Sub District Identity">
+
+                            <div class="form-group required">
+                                <label for="subdistrictName" class="col-form-label col-md-4">Name</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="subDistrictName" name="subDistrictName" placeholder="Sub District Name">
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label for="districtId" class="col-form-label col-md-4">District</label>
+                                <div class="col-md-10">
+                                    <select type="text" name="districtId" id="districtId" class="form-control">
+                                        <option value="0">-PILIH-</option>
+                                        <option th:each="data:${dataDistrict}" th:value="${data.districtId}" th:text="${data.districtName}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-success" id="confirm">Save</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--delete-->
+            <div class="delete-form">
+                <form th:action="@{/subdistrict/update}" method="get">
+                    <div class="modal fade" id="delete-subdistrict" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" class="form-control" id="subDistrictId" name="subDistrictId">
+                                    <input type="hidden" class="form-control" id="subDistrictName" name="subDistrictName">
+                                    <input type="hidden" class="form-control" id="districtId" name="districtId" >
+                                    <input type="hidden" class="form-control" id="isDelete" value="true" name="isDelete">
+                                    Anda yakin ingin menghapus data ini?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-primary" value="Delete" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
+<!-- end document-->

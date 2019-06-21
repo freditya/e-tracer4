@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/trainer/layout}">
+
+    <head>
+        <!-- Required meta tags-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="au theme template">
+        <meta name="author" content="Hau Nguyen">
+        <meta name="keywords" content="au theme template">
+
+        <!-- Title Page-->
+        <title>Tables</title>
+    </head>
+
+    <body class="animsition">
+        <!-- HEADER MOBILE-->
+
+        <!-- END HEADER MOBILE-->
+
+
+        <!-- PAGE CONTAINER-->
+        <div layout:fragment="content">
+            <!-- HEADER DESKTOP-->
+            <!-- END HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item active" aria-current="page">Site  </li>
+
+                                    </ol>
+                                </nav>
+                                <div class="overview-wrap" style="padding-bottom: 20px">
+                                    <h2 class="title-1">Site</h2>
+                                    
+                                </div>
+                                <div class="table-responsive table--no-card m-b-30">
+                                    <table id="example" class="table table-borderless table-striped table-data3">
+                                        <thead>
+                                            <tr align="center">
+                                                <th>Action</th>
+                                                <th>Site ID</th>
+                                                <th>Name</th>
+                                                <th>Village</th>
+                                                <th>Employee</th>
+                                                <th style="display:none;">Employee</th>
+                                                <th style="display:none;">Employee</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each = "data:${dataSite}" align="center">
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#detail-site"><i class="fa fa-eye"></i>
+                                                    </button>
+                                                </td>
+                                                <td id="siteId" th:text="${data.siteId}"></td>
+                                                <td id="siteName" th:text="${data.siteName}"></td>
+                                                <td id="villageId" th:text="${data.villageId.villageId}" style="display:none;"></td>
+                                                <td id="villageName"th:text="${data.villageId.villageName}" ></td>
+                                                <td id="employeeId" th:text="${data.employeeId.employeeId}" style="display:none;"></td>
+                                                <td id="employee_name"th:text="${data.employeeId.employeeName}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-30">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE-->
+
+                                <!-- END DATA TABLE-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2019 Bootcamp25. All rights reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Modal input Dialog--> 
+            <div class="modal fade" id="detail-site" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Detail Site</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <form method="get">
+
+
+                            <div class="form-group required">
+                                <label for="score" class="col-form-label col-md-4">Site ID</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="siteId" name="siteId" placeholder="Site Identity" readonly="">
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label for="score" class="col-form-label col-md-4">Site Name</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="siteName" name="siteName" placeholder="Site Name" readonly="">
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label for="villageId" class="col-form-label col-md-4">Village</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="villageName" name="villageId" placeholder="Site Name" readonly="">
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label for="employeeId" class="col-form-label col-md-4">Employee</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="employee_name" name="employeeId" placeholder="Site Name" readonly="">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </body>
+
+
+</html>
+<!-- end document-->

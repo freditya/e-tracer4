@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/trainer/layout}">
+
+    <head>
+        <!-- Required meta tags-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="au theme template">
+        <meta name="author" content="Hau Nguyen">
+        <meta name="keywords" content="au theme template">
+
+        <!-- Title Page-->
+        <title>Tables</title>
+    </head>
+
+    <body class="animsition">
+        <!-- HEADER MOBILE-->
+
+        <!-- END HEADER MOBILE-->
+
+
+        <!-- PAGE CONTAINER-->
+        <div layout:fragment="content">
+            <!-- HEADER DESKTOP-->
+            <!-- END HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">FeddBack</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Respond Problem  </li>
+
+                                    </ol>
+                                </nav>
+
+                                <div class="table-responsive table--no-card m-b-30">
+                                    <table id="example" class="table table-borderless table-striped table-data3">
+                                        <thead>
+                                            <tr>
+                                                <th>Action</th>
+                                                <th>ID</th>
+                                                <th>Message</th>
+                                                <th>Report Message</th>
+                                                <th>Employee</th>
+                                                <th style="display:none;"></th>
+                                                <th style="display:none;"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each = "data:${dataRespond}">
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#detail-respond"><i class="fa fa-eye"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#delete-respond"><i class="fa fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                                <td id="respond_id" th:text="${data.respondId}"></td>
+                                                <td id="respond_message" th:text="${data.respondMessage}"></td>
+                                                <td id="report_id" th:text="${data.reportId.reportId}"style="display:none;"></td>
+                                                <td id="report_message" th:text="${data.reportId.reportMessage}"></td>
+                                                <td id="employee_id" th:text="${data.employeeId.employeeId}"style="display:none;"></td>
+                                                <td id="employee_name" th:text="${data.employeeId.employeeName}"></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-30">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE-->
+
+                                <!-- END DATA TABLE-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2019 Bootcamp25. All rights reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="detail-respond" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Detail Respond</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div>
+
+                            <form method="post">
+
+
+                                <div class="form-group required">
+                                    <label for="respondMessage" class="col-form-label col-md-4" readonly="">Respond Message</label>
+                                    <div class="col-md-10">
+                                        <textarea type="text" class="form-control" id="respondMessage" readonly=""></textarea>
+                                    </div>
+                                </div>
+
+                                    <div class="form-group required">
+                                        <label for="reportId" class="col-form-label col-md-4">Report Message</label>
+                                        <div class="col-md-10">
+                                            <textarea type="text" class="form-control" id="reportMessage" readonly></textarea>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="form-group required">
+                                        <label for="employeeId" class="col-form-label col-md-4" readonly="">Employee</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" id="employeeName" name="employeeId" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="delete-form">
+                    <form th:action="@{/respondproblem/update}" method="get">
+                        <div class="modal fade" id="delete-respond" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" class="form-control" id="respondId" name="respondId">
+                                        <input type="hidden" class="form-control" id="employeeId" name="employeeId" placeholder="Employee Identity">
+                                        <input type="hidden" class="form-control" id="respondMessage" name="respondMessage" placeholder="respondMessage">
+                                        <input type="hidden" class="form-control" id="reportId" name="reportId" placeholder="reportId">
+                                        <input type="hidden" class="form-control" id="isDelete" value="true" name="isDelete" placeholder="Delete">
+                                        Anda yakin ingin menghapus data ini?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <input type="submit" class="btn btn-primary" value="Delete" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+    </body>
+
+
+</html>
+<!-- end document-->

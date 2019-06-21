@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <!-- Required meta tags-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="au theme template">
+        <meta name="author" content="Hau Nguyen">
+        <meta name="keywords" content="au theme template">
+
+        <!-- Title Page-->
+        <title>Tables</title>
+
+        <!-- Fontfaces CSS-->
+        <link th:href="@{/assets/css/font-face.css}" rel="stylesheet" media="all">
+        <link href="css/style.css" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/font-awesome-4.7/css/font-awesome.min.css}" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/font-awesome-5/css/fontawesome-all.min.css}" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/mdi-font/css/material-design-iconic-font.min.css}" rel="stylesheet" media="all">
+
+        <!-- Bootstrap CSS-->
+        <link th:href="@{/assets/vendor/bootstrap-4.1/bootstrap.min.css}" rel="stylesheet" media="all">
+
+        <!-- Vendor CSS-->
+        <link th:href="@{/assets/vendor/animsition/animsition.min.css}" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/wow/animate.css}" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/slick/slick.css}" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/select2/select2.min.css}" rel="stylesheet" media="all">
+        <link th:href="@{/assets/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet" media="all">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"> 
+        <!-- Main CSS-->
+        <link th:href="@{/assets/css/theme.css}" rel="stylesheet" media="all">
+
+    </head>
+
+    <body class="animsition">
+        <div class="page-wrapper">
+            <!-- HEADER MOBILE-->
+            <header class="header-mobile d-block d-lg-none">
+                <div class="header-mobile__bar">
+                    <div class="container-fluid">
+                        <div class="header-mobile-inner">
+                            <a class="logo" href="assets/index.html">
+                                <img th:src="@{/assets/images/icon/logo.png}" alt="CoolAdmin" />
+                            </a>
+                            <button class="hamburger hamburger--slider" type="button">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <nav class="navbar-mobile">
+                    <div class="container-fluid">
+                        <ul class="navbar-mobile__list list-unstyled">
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+
+                            </li>
+                            <li>
+                                <a href="chart.html">
+                                    <i class="fas fa-chart-bar"></i>Charts</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <!-- END HEADER MOBILE-->
+
+            <!-- MENU SIDEBAR-->
+            <aside class="menu-sidebar d-none d-lg-block">
+                <div class="logo">
+                    <a href="#">
+                        <img th:src="@{/assets/images/icon/logo.png}" alt="Cool Admin" />
+                    </a>
+                </div>
+                <div class="menu-sidebar__content js-scrollbar1">
+                    <nav class="navbar-sidebar">
+                        <ul class="list-unstyled navbar__list">
+                            <li class="has-sub">
+                                <a class="js-arrow" th:href="@{/index}">
+                                    <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                            </li>
+                            <li class="hs-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-edit"></i>Management Data </a>
+                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <li>
+                                        <a th:href="@{/province}">Province</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/district}">District</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/assessment}">Assessment</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/department}">Department</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/eval_parameter}">Evaluation</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/score}">Score</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="hs-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-users"></i>Users </a>
+                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <li>
+                                        <a th:href="@{/employee}">Employee</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/user_role}">User Role</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+            <!-- END MENU SIDEBAR-->
+
+            <!-- PAGE CONTAINER-->
+            <div class="page-container">
+                <!-- HEADER DESKTOP-->
+                <header class="header-desktop">
+                    <div class="section__content section__content--p30">
+                        <div class="container-fluid">
+                            <div class="header-wrap">
+                                <form class="form-header" action="" method="POST">
+                                    <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                                    <button class="au-btn--submit" type="submit">
+                                        <i class="zmdi zmdi-search"></i>
+                                    </button>
+                                </form>
+                                <div class="header-button">
+                                    <div class="noti-wrap">
+                                        <div class="noti__item js-item-menu">
+                                            <i class="zmdi zmdi-notifications"></i>
+                                            <span class="quantity">3</span>
+                                            <div class="notifi-dropdown js-dropdown">
+                                                <div class="notifi__title">
+                                                    <p>You have 3 Notifications</p>
+                                                </div>
+                                                <div class="notifi__item">
+                                                    <div class="bg-c1 img-cir img-40">
+                                                        <i class="zmdi zmdi-email-open"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <p>You got a email notification</p>
+                                                        <span class="date">April 12, 2018 06:50</span>
+                                                    </div>
+                                                </div>
+                                                <div class="notifi__item">
+                                                    <div class="bg-c2 img-cir img-40">
+                                                        <i class="zmdi zmdi-account-box"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <p>Your account has been blocked</p>
+                                                        <span class="date">April 12, 2018 06:50</span>
+                                                    </div>
+                                                </div>
+                                                <div class="notifi__item">
+                                                    <div class="bg-c3 img-cir img-40">
+                                                        <i class="zmdi zmdi-file-text"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <p>You got a new file</p>
+                                                        <span class="date">April 12, 2018 06:50</span>
+                                                    </div>
+                                                </div>
+                                                <div class="notifi__footer">
+                                                    <a href="#">All notifications</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="account-wrap">
+                                        <div class="account-item clearfix js-item-menu">
+                                            <div class="image">
+                                                <img th:src="@{/assets/images/icon/avatar-01.jpg}" alt="John Doe" />
+                                            </div>
+                                            <div class="content">
+                                                <a class="js-acc-btn" href="#">john doe</a>
+                                            </div>
+                                            <div class="account-dropdown js-dropdown">
+                                                <div class="info clearfix">
+                                                    <div class="image">
+                                                        <a href="#">
+                                                            <img th:src="@{/assets/images/icon/avatar-01.jpg}" alt="John Doe" />
+                                                        </a>
+                                                    </div>
+                                                    <div class="content">
+                                                        <h5 class="name">
+                                                            <a href="#">john doe</a>
+                                                        </h5>
+                                                        <span class="email">johndoe@example.com</span>
+                                                    </div>
+                                                </div>
+                                                <div class="account-dropdown__body">
+                                                    <div class="account-dropdown__item">
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-account"></i>Account</a>
+                                                    </div>
+                                                    <div class="account-dropdown__item">
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-settings"></i>Setting</a>
+                                                    </div>
+                                                    <div class="account-dropdown__item">
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                                    </div>
+                                                </div>
+                                                <div class="account-dropdown__footer">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-power"></i>Logout</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <!-- END HEADER DESKTOP-->
+
+                <!-- MAIN CONTENT-->
+                <div class="main-content">
+                    <div class="section__content section__content--p30">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Employee  </li>
+
+                                        </ol>
+                                    </nav>
+                                    <div class="overview-wrap" style="padding-bottom: 20px">
+                                        <h2 class="title-1">Employee</h2>
+                                        <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#input-employee"><i class="fa fa-plus"></i>
+                                            Add Data</button>
+                                    </div>
+                                    <div class="table-responsive table--no-card m-b-30">
+                                        <table id="example" class="table table-borderless table-striped table-data3">
+                                            <thead>
+                                                <tr>
+                                                    <th>No.</th>
+                                                    <th>Employee ID</th>
+                                                    <th>Employee Name</th>
+                                                    <th>Address</th>
+                                                    <th>Birth</th>
+                                                    <th>Join</th>
+                                                    <th>Manager</th>
+                                                    <th>Salary</th>
+                                                    <th>Gender</th>
+                                                    <th>Phone</th>
+                                                    <th>Email</th>
+                                                    <th>Department</th>
+                                                    <th>Job</th>
+                                                    <th style="display:none;"></th>
+                                                    <th style="display:none;"></th>
+                                                    <th style="display:none;"></th> 
+                                                    <th style="display:none;"></th>
+                                                    <th style="display:none;"></th>
+                                                    <th style="display:none;"></th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each = "data:${dataEmployee}">
+                                                    <td></td>
+                                                    <td id="employee_id" th:text="${data.employeeId}"></td>
+                                                    <td id="employee_name" th:text="${data.employeeName}"></td>
+                                                    <td id="address_" th:text="${data.address}"></td>
+                                                    <td id="dateOfBirth_" th:text="${data.dateOfBirth}" style="display:none;"></td>
+                                                    <td th:text="${#dates.format(data.dateOfBirth, 'dd-MMM-yyyy')}"></td>
+                                                    <td id="dateOfJoin_" th:text="${data.dateOfJoin}" style="display:none;"></td>
+                                                    <td th:text="${#dates.format(data.dateOfJoin, 'dd-MMM-yyyy')}"></td>
+                                                    <td id="manager_id" th:text="${data.managerId.employeeId}" style="display:none;"></td>
+                                                    <td th:text="${data.managerId.employeeName}"></td>
+                                                    <td id="salary_" th:text="${data.salary}"></td>
+                                                    <td id="gender_" th:text="${data.gender}"></td>
+                                                    <td id="phone_" th:text="${data.phone}"></td>
+                                                    <td id="email_" th:text="${data.email}"></td>
+                                                    <td id="department_id" th:text="${data.departmentId.departmentId}" style="display:none;"></td>
+                                                    <td th:text="${data.departmentId.departmentName}"></td>
+                                                    <td id="job_id" th:text="${data.jobId.jobId}" style="display:none;"></td>
+                                                    <td th:text="${data.jobId.jobName}"></td>
+                                                    <td id="password_" th:text="${data.password}" style="display:none;"></td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-employee"><i class="fa fa-edit"></i>
+                                                            Edit</button>
+                                                        <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#delete-employee"><i class="fa fa-trash"></i>
+                                                            Delete</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-t-30">
+                                <div class="col-md-12">
+                                    <!-- DATA TABLE-->
+
+                                    <!-- END DATA TABLE-->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="copyright">
+                                        <p>Copyright © 2019 Bootcamp25. All rights reserved.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--Modal input Dialog--> 
+        <div class="modal fade bd-example-modal-lg" id="input-employee" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Region</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <form th:action="@{/employee/addData}" method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="employeeId" class="col-form-label col-md-6">Employee Id</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="employeeId" name="employeeId" placeholder="Employee Identity">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="employeeName" class="col-form-label col-md-6">Employee Name</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="provinceName" name="employeeName" placeholder="Employee Name">
+                                    </div>
+                                    <input type="hidden" class="form-control" id="idDelete" name="isDelete" value="false" placeholder="isDelete">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="address" class="col-form-label col-md-6">Adress</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="address" name="address" placeholder="Address">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="dateOfBirth" class="col-form-label col-md-6">Birth</label>
+                                    <div class="col-md-10">
+                                        <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" placeholder="Birth">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="dateOfJoin" class="col-form-label col-md-4">Join Date</label>
+                                    <div class="col-md-10">
+                                        <input type="date" class="form-control" id="dateOfJoin" name="dateOfJoin" placeholder="Join Date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="managerId" class="col-form-label col-md-4">Manager</label>
+                                    <div class="col-md-10">
+                                        <!--<input type="text" class="form-control" id="managerId" name="managerId" placeholder="Manager">-->
+                                        <select type="text" name="managerId" id="managerId" class="form-control">
+                                            <option value="0">-PILIH-</option>
+                                            <option th:each="data:${dataEmployee}" th:value="${data.employeeId}" th:text="${data.employeeName}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="salary" class="col-form-label col-md-4">Salary</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="salary" name="salary" placeholder="Salary">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="gender" class="col-form-label col-md-4">Gender</label>
+                                    <div class="col-md-10">
+                                        <!--<input type="text" class="form-control" id="gender" name="gender" placeholder="Gender">-->
+                                        <select type="text" name="gender" id="managerId" class="form-control">
+                                            <option value="0">-PILIH-</option>
+                                            <option th:value="Male" th:text="Male"></option>
+                                            <option th:value="Female" th:text="Female"></option>
+                                        </select>
+                                        <!--<form:select path="managerId" items="${gender}"/>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="phone" class="col-form-label col-md-4">Phone</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="email" class="col-form-label col-md-4">Email</label>
+                                    <div class="col-md-10">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="password" class="col-form-label col-md-4">Password</label>
+                                    <div class="col-md-10">
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="department" class="col-form-label col-md-4">Department</label>
+                                    <div class="col-md-10">
+                                        <!--<input type="text" class="form-control" id="departmentId" name="departmentId" placeholder="departmentId">-->
+                                        <select type="text" id="departmentId" name="departmentId" class="form-control">
+                                            <option value="0">-PILIH-</option>
+                                            <option th:each="data:${dataDepartment}" th:value="${data.departmentId}" th:text="${data.departmentName}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="jobId" class="col-form-label col-md-4">Job</label>
+                                    <div class="col-md-10">
+                                        <!--<input type="text" class="form-control" id="jobId" name="jobId" placeholder="jobId">-->
+                                        <select type="text" name="jobId" id="jobId" class="form-control" >
+                                            <option value="0">-PILIH-</option>
+                                            <option th:each="data:${dataJob}" th:value="${data.jobId}" th:text="${data.jobName}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success" id="confirm">Save</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Modal edit Dialog--> 
+        <div class="modal fade bd-example-modal-lg" id="edit-employee" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Update Employee</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <form th:action="@{/employee/addData}" method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="employeeId" class="col-form-label col-md-6">Employee Id</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="employee_id" name="employeeId" placeholder="Employee Identity">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="employeeName" class="col-form-label col-md-6">Employee Name</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="employee_name" name="employeeName" placeholder="Employee Name">
+                                    </div>
+                                    <input type="hidden" class="form-control" id="isDelete" name="isDelete" value="false" placeholder="isDelete">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="address" class="col-form-label col-md-6">Adress</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="address_" name="address" placeholder="Address">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="dateOfBirth" class="col-form-label col-md-6">Birth</label>
+                                    <div class="col-md-10">
+                                        <input type="date" class="form-control" id="dateOfBirth_" name="dateOfBirth" placeholder="Birth">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="dateOfJoin" class="col-form-label col-md-4">Join Date</label>
+                                    <div class="col-md-10">
+                                        <input type="date" class="form-control" id="dateOfJoin_" name="dateOfJoin" placeholder="Join Date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="managerId" class="col-form-label col-md-4">Manager</label>
+                                    <div class="col-md-10">
+                                        <!--<input type="text" class="form-control" id="managerId" name="managerId" placeholder="Manager">-->
+                                        <select type="text" name="managerId" id="manager_id" class="form-control">
+                                            <option value="0">-PILIH-</option>
+                                            <option th:each="data:${dataEmployee}" th:value="${data.employeeId}" th:text="${data.employeeName}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="salary" class="col-form-label col-md-4">Salary</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="salary_" name="salary" placeholder="Salary">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="gender" class="col-form-label col-md-4">Gender</label>
+                                    <div class="col-md-10">
+                                        <!--<input type="text" class="form-control" id="gender" name="gender" placeholder="Gender">-->
+                                        <select type="text" name="gender" id="gender_" class="form-control">
+                                            <option value="0">-PILIH-</option>
+                                            <option th:value="Male" th:text="Male"></option>
+                                            <option th:value="Female" th:text="Female"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="phone" class="col-form-label col-md-4">Phone</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="phone_" name="phone" placeholder="Phone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="email" class="col-form-label col-md-4">Email</label>
+                                    <div class="col-md-10">
+                                        <input type="email" class="form-control" id="email_" name="email" placeholder="Email">
+                                        <input type="hidden" class="form-control" id="password_" name="password" placeholder="Password">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="department" class="col-form-label col-md-4">Department</label>
+                                    <div class="col-md-10">
+                                        <!--<input type="text" class="form-control" id="departmentId" name="departmentId" placeholder="departmentId">-->
+                                        <select type="text" id="department_id" name="departmentId" class="form-control">
+                                            <option value="0">-PILIH-</option>
+                                            <option th:each="data:${dataDepartment}" th:value="${data.departmentId}" th:text="${data.departmentName}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="jobId" class="col-form-label col-md-4">Job</label>
+                                    <div class="col-md-10">
+                                        <!--<input type="text" class="form-control" id="jobId" name="jobId" placeholder="jobId">-->
+                                        <select type="text" name="jobId" id="job_id" class="form-control" >
+                                            <option value="0">-PILIH-</option>
+                                            <option th:each="data:${dataJob}" th:value="${data.jobId}" th:text="${data.jobName}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success" id="confirm">Update</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--delete-->
+        <div class="delete-form">
+            <form th:action="@{/employee/update}" method="get">
+                <div class="modal fade" id="delete-employee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" class="form-control" id="employee_id" name="employeeId" placeholder="Employee Identity">
+                                <input type="hidden" class="form-control" id="employee_name" name="employeeName" placeholder="Employee Name">
+                                <input type="hidden" class="form-control" id="address_" name="address" placeholder="Address">
+                                <input type="hidden" class="form-control" id="dateOfBirth_" name="dateOfBirth" placeholder="Birth">
+                                <input type="hidden" class="form-control" id="dateOfJoin_" name="dateOfJoin" placeholder="Join Date">
+                                <input type="hidden" name="managerId" id="manager_id" class="form-control">
+                                    
+                                <input type="hidden" class="form-control" id="salary_" name="salary" placeholder="Salary">
+                                <input type="hidden" class="form-control" id="phone_" name="phone" placeholder="Phone">
+                                <input type="hidden" class="form-control" id="email_" name="email" placeholder="Email">
+                                <input type="hidden" class="form-control" id="password_" name="password" placeholder="Password">
+                                <input type="hidden" id="department_id" name="departmentId" class="form-control">
+                                    
+                                <input type="hidden" name="jobId" id="job_id" class="form-control" >
+                                    
+                                <input type="hidden" name="gender" id="gender_" class="form-control">
+                                            
+
+                                <input type="hidden" class="form-control" id="isDelete" value="true" name="isDelete" placeholder="Delete">
+                                Anda yakin ingin mengahpus data ini?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Delete" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Jquery JS-->
+        <script th:src="@{/assets/vendor/jquery-3.2.1.min.js}"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <!-- Bootstrap JS-->
+        <script th:src="@{/assets/vendor/bootstrap-4.1/popper.min.js}"></script>
+        <script th:src="@{/assets/vendor/bootstrap-4.1/bootstrap.min.js}"></script>
+        <!-- Vendor JS       -->
+        <script th:src="@{/assets/vendor/slick/slick.min.js}">
+        </script>
+        <script th:src="@{/assets/vendor/wow/wow.min.js}"></script>
+        <script th:src="@{/assets/vendor/animsition/animsition.min.js}"></script>
+        <script th:src="@{/assets/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js}">
+        </script>
+        <script th:src="@{/assets/vendor/counter-up/jquery.waypoints.min.js}"></script>
+        <script th:src="@{/assets/vendor/counter-up/jquery.counterup.min.js}">
+        </script>
+        <script th:src="@{/assets/vendor/circle-progress/circle-progress.min.js}"></script>
+        <script th:src="@{/assets/vendor/perfect-scrollbar/perfect-scrollbar.js}"></script>
+        <script th:src="@{/assets/vendor/chartjs/Chart.bundle.min.js}"></script>
+        <script th:src="@{/assets/vendor/select2/select2.min.js}">
+        </script>
+
+        <!-- Main JS-->
+        <script th:src="@{/assets/js/main.js}"></script>
+        <script>
+            $(document).ready(function () {
+            var t = $('#example').DataTable({
+            "columnDefs": [{
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+            }],
+            order: [ [0, "asc"] ]
+            });
+
+            t.on('order.dt search.dt', function () {
+            t.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+            cell.innerHTML = i + 1;
+            });
+            }).draw();
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#edit-employee").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _employeeId = _row.find("#employee_id").text();
+                    var _employeeName = _row.find("#employee_name").text();
+                    var _address = _row.find("#address_").text();
+                    var _dateOfBirth = _row.find("#dateOfBirth_").text();
+                    var _dateOfJoin = _row.find("#dateOfJoin_").text();
+                    var _managerId = _row.find("#manager_id").text();
+                    var _salary = _row.find("#salary_").text();
+                    var _gender = _row.find("#gender_").text();
+                    var _phone = _row.find("#phone_").text();
+                    var _email = _row.find("#email_").text();
+                    var _departmentId = _row.find("#department_id").text();
+                    var _jobId = _row.find("#job_id").text();
+                    var _password = _row.find("#password_").text();
+
+                    $(this).find("#employee_id").val(_employeeId);
+                    $(this).find("#employee_name").val(_employeeName);
+                    $(this).find("#address_").val(_address);
+                    $(this).find("#dateOfBirth_").val(_dateOfBirth);
+                    $(this).find("#dateOfJoin_").val(_dateOfJoin);
+                    $(this).find("#manager_id").val(_managerId);
+                    $(this).find("#salary_").val(_salary);
+                    $(this).find("#gender_").val(_gender);
+                    $(this).find("#phone_").val(_phone);
+                    $(this).find("#email_").val(_email);
+                    $(this).find("#department_id").val(_departmentId);
+                    $(this).find("#job_id").val(_jobId);
+                    $(this).find("#password_").val(_password);
+
+                    //                    alert($(this).find("#actor_Id").text());
+                    //                    alert($(this).find("#first_Name").text());
+
+                })
+            })
+        </script>
+        
+        <script>
+            $(document).ready(function () {
+                $("#delete-employee").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _employeeId = _row.find("#employee_id").text();
+                    var _employeeName = _row.find("#employee_name").text();
+                    var _address = _row.find("#address_").text();
+                    var _dateOfBirth = _row.find("#dateOfBirth_").text();
+                    var _dateOfJoin = _row.find("#dateOfJoin_").text();
+                    var _managerId = _row.find("#manager_id").text();
+                    var _salary = _row.find("#salary_").text();
+                    var _gender = _row.find("#gender_").text();
+                    var _phone = _row.find("#phone_").text();
+                    var _email = _row.find("#email_").text();
+                    var _departmentId = _row.find("#department_id").text();
+                    var _jobId = _row.find("#job_id").text();
+                    var _password = _row.find("#password_").text();
+
+                    $(this).find("#employee_id").val(_employeeId);
+                    $(this).find("#employee_name").val(_employeeName);
+                    $(this).find("#address_").val(_address);
+                    $(this).find("#dateOfBirth_").val(_dateOfBirth);
+                    $(this).find("#dateOfJoin_").val(_dateOfJoin);
+                    $(this).find("#manager_id").val(_managerId);
+                    $(this).find("#salary_").val(_salary);
+                    $(this).find("#gender_").val(_gender);
+                    $(this).find("#phone_").val(_phone);
+                    $(this).find("#email_").val(_email);
+                    $(this).find("#department_id").val(_departmentId);
+                    $(this).find("#job_id").val(_jobId);
+                    $(this).find("#password_").val(_password);
+
+                    //                    alert($(this).find("#actor_Id").text());
+                    //                    alert($(this).find("#first_Name").text());
+
+                })
+            })
+        </script>
+
+
+
+    </body>
+
+
+</html>
+<!-- end document-->

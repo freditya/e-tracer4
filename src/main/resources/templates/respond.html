@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Etracer - Home</title>
+        <link rel="icon" th:src="@{/assets/img/Fevicon.png}" type="image/png">
+
+        <link rel="stylesheet" th:href="@{/assets/vendors/bootstrap/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/assets/vendors/fontawesome/css/all.min.css}">
+        <link rel="stylesheet" th:href="@{/assets/vendors/themify-icons/themify-icons.css}">
+        <link rel="stylesheet" th:href="@{/assets/vendors/linericon/style.css}">
+        <link rel="stylesheet" th:href="@{/assets/vendors/owl-carousel/owl.theme.default.min.css}">
+        <link rel="stylesheet" th:href="@{/assets/vendors/owl-carousel/owl.carousel.min.css}">
+        <link rel="stylesheet" th:href="@{/assets/vendors/flat-icon/font/flaticon.css}">
+        <link rel="stylesheet" th:href="@{/assets/vendors/nice-select/nice-select.css}">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+        <link rel="stylesheet" th:href="@{/assets/css2/style.css}">
+    </head>
+    <body class="bg-shape">
+
+        <!--================ Header Menu Area start =================-->
+        <header class="header_area">
+            <div class="main_menu">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="container box_1620">
+                        <a class="navbar-brand logo_h" th:href="@{/trainer}"><img th:src="@{/assets/img/mii.png}" alt="" width="150px" height="100px"></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav menu_nav justify-content-end">
+                                <li class="nav-item active"><a class="nav-link" th:href="@{/trainer}">Home</a></li> 
+                                <li class="nav-item"><a class="nav-link" th:href="@{/department}">Department</a></li> 
+                                <li class="nav-item"><a class="nav-link" th:href="@{/emp}">Employee</a>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       aria-expanded="false">Location</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" th:href="@{/province}">Province</a>                 
+                                        <li class="nav-item"><a class="nav-link" th:href="@{/district}">District</a>                 
+                                        <li class="nav-item"><a class="nav-link" th:href="@{/subdistrict}">Sub District</a>                 
+                                        <li class="nav-item"><a class="nav-link" th:href="@{/village}">Village</a>                 
+                                    </ul>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" th:href="@{/site}">Site</a></li>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       aria-expanded="false">Feedback</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" th:href="@{/report}">Report Problem</a>                 
+                                        <li class="nav-item"><a class="nav-link" th:href="@{/respond}">Respond Problem</a>                                  
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <div class="nav-right text-center text-lg-right py-4 py-lg-0">
+                                <a class="button" href="#">Login</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!--================Hero Banner SM Area Start =================-->
+        <section class="hero-banner" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 0px -80px" data-top-bottom="background-position: 0 100px">
+            <div class="container">
+                <div class="hero-banner-sm-content">
+                    <h1>Respond Problem</h1>
+                </div>
+                <div class="table-responsive table--no-card m-b-30">
+                    <table id="example" class="table table-borderless table-striped table-data3">
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>ID</th>
+                                <th>Message</th>
+                                <th>Report</th>
+                                <th>Employee</th>
+                                <th style="display:none;"></th>
+                                <th style="display:none;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each = "data:${dataRespond}">
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-respond"><i class="fa fa-reply"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#delete-respond"><i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                                <td id="respond_id" th:text="${data.respondId}"></td>
+                                <td id="respond_message" th:text="${data.respondMessage}"></td>
+                                <td id="report_id" th:text="${data.reportId.reportId}" style="display:none;"></td>
+                                <td th:text="${data.reportId.reportMessage}"></td>
+                                <td id="employee_id" th:text="${data.employeeId.employeeId}" style="display:none;"></td>
+                                <td th:text="${data.employeeId.employeeName}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="section-padding bg-gray">
+            <div class="container">
+                <div class="section-intro text-center pb-90px">
+                    <img class="section-intro-img" th:src="@{/assets/img/home/section-icon.png}" alt="">
+                    <h2>E-tracer</h2>
+                    <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved by Bootcamp 25</p>
+                </div>
+
+            </div>
+        </section>
+
+
+
+        <!--Modal edit Dialog--> 
+        <!--        <div class="modal fade bd-example-modal-lg" id="edit-respond" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Update Employee</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div>
+                            <form th:action="@{/employee/addData}" method="post">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group required">
+                                            <label for="employeeId" class="col-form-label col-md-6">ID</label>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" id="employee_id" name="employeeId" placeholder="Employee Identity">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group required">
+                                            <label for="employeeName" class="col-form-label col-md-6">Name</label>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" id="employee_name" name="employeeName" placeholder="Employee Name">
+                                            </div>
+                                            <input type="hidden" class="form-control" id="isDelete" name="isDelete" value="false" placeholder="isDelete">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group required">
+                                            <label for="address" class="col-form-label col-md-6">Adress</label>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" id="address_" name="address" placeholder="Address">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group required">
+                                            <label for="dateOfBirth" class="col-form-label col-md-6">Birth</label>
+                                            <div class="col-md-10">
+                                                <input type="date" class="form-control" id="dateOfBirth_" name="dateOfBirth" placeholder="Birth">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group required">
+                                            <label for="dateOfJoin" class="col-form-label col-md-4">Join Date</label>
+                                            <div class="col-md-10">
+                                                <input type="date" class="form-control" id="dateOfJoin_" name="dateOfJoin" placeholder="Join Date">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group required">
+                                            <label for="managerId" class="col-form-label col-md-4">Manager</label>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" id="managerId" name="managerId" placeholder="Manager">
+                                                <select type="text" name="managerId" id="manager_id" class="form-control">
+                                                    <option value="0">-PILIH-</option>
+                                                    <option th:each="data:${dataEmployee}" th:value="${data.employeeId}" th:text="${data.employeeName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group required">
+                                            <label for="salary" class="col-form-label col-md-4">Salary</label>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" id="salary_" name="salary" placeholder="Salary">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group required">
+                                            <label for="gender" class="col-form-label col-md-4">Gender</label>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" id="gender" name="gender" placeholder="Gender">
+                                                <select type="text" name="gender" id="gender_" class="form-control">
+                                                    <option value="0">-PILIH-</option>
+                                                    <option th:value="Male" th:text="Male"></option>
+                                                    <option th:value="Female" th:text="Female"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group required">
+                                            <label for="phone" class="col-form-label col-md-4">Phone</label>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" id="phone_" name="phone" placeholder="Phone">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group required">
+                                            <label for="email" class="col-form-label col-md-4">Email</label>
+                                            <div class="col-md-10">
+                                                <input type="email" class="form-control" id="email_" name="email" placeholder="Email">
+                                                <input type="hidden" class="form-control" id="password_" name="password" placeholder="Password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group required">
+                                            <label for="department" class="col-form-label col-md-4">Department</label>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" id="departmentId" name="departmentId" placeholder="departmentId">
+                                                <select type="text" id="department_id" name="departmentId" class="form-control">
+                                                    <option value="0">-PILIH-</option>
+                                                    <option th:each="data:${dataDepartment}" th:value="${data.departmentId}" th:text="${data.departmentName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group required">
+                                            <label for="jobId" class="col-form-label col-md-4">Job</label>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" id="jobId" name="jobId" placeholder="jobId">
+                                                <select type="text" name="jobId" id="job_id" class="form-control" >
+                                                    <option value="0">-PILIH-</option>
+                                                    <option th:each="data:${dataJob}" th:value="${data.jobId}" th:text="${data.jobName}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-success" id="confirm">Update</button>
+        
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>-->
+
+
+
+        <!--delete-->
+        <div class="delete-form">
+            <form th:action="@{/respond/update}" method="get">
+                <div class="modal fade" id="delete-respond" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" class="form-control" id="employee_id" name="employeeId" placeholder="Employee Identity">
+                                <input type="hidden" class="form-control" id="employee_name" name="employeeName" placeholder="Employee Name">
+                                <input type="hidden" class="form-control" id="address_" name="address" placeholder="Address">
+                                <input type="hidden" class="form-control" id="dateOfBirth_" name="dateOfBirth" placeholder="Birth">
+                                <input type="hidden" class="form-control" id="dateOfJoin_" name="dateOfJoin" placeholder="Join Date">
+                                <input type="hidden" name="managerId" id="manager_id" class="form-control">
+
+                                <input type="hidden" class="form-control" id="salary_" name="salary" placeholder="Salary">
+                                <input type="hidden" class="form-control" id="phone_" name="phone" placeholder="Phone">
+                                <input type="hidden" class="form-control" id="email_" name="email" placeholder="Email">
+                                <input type="hidden" class="form-control" id="password_" name="password" placeholder="Password">
+                                <input type="hidden" id="department_id" name="departmentId" class="form-control">
+
+                                <input type="hidden" name="jobId" id="job_id" class="form-control" >
+
+                                <input type="hidden" name="gender" id="gender_" class="form-control">
+
+
+                                <input type="hidden" class="form-control" id="isDelete" value="true" name="isDelete" placeholder="Delete">
+                                Anda yakin ingin menghapus data ini?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Delete" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <script th:src="@{/assets/vendor/jquery-3.2.1.min.js}"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script th:href="@{/assets/vendors/bootstrap/bootstrap.bundle.min.js}"></script>
+        <script th:href="@{/assets/vendors/owl-carousel/owl.carousel.min.js}"></script>
+        <script th:href="@{/assets/vendors/nice-select/jquery.nice-select.min.js}"></script>
+        <script th:href="@{/assets/js2/jquery.ajaxchimp.min.js}"></script>
+        <script th:href="@{/assets/js2/mail-script.js}"></script>
+        <script th:href="@{/assets/js2/skrollr.min.js}"></script>
+        <script th:href="@{/assets/js2/main.js}"></script>
+
+        <script>
+                        $(document).ready(function () {
+                            $('#example').DataTable();
+                        });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#edit-respond").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
+
+                    var _respondId = _row.find("#respond_id").text();
+                    var _respondMessage = _row.find("#respond_message").text();
+                    var _reportId = _row.find("#report_id").text();
+                    var _employeeId = _row.find("#employee_id").text();
+
+                    $(this).find("#respond_id").val(_respondId);
+                    $(this).find("#respond_message").val(_respondMessage);
+                    $(this).find("#report_id").val(_reportId);
+                    $(this).find("#employee_id").val(_employeeId);
+
+                    //                    alert($(this).find("#actor_Id").text());
+                    //                    alert($(this).find("#first_Name").text());
+
+                })
+            })
+        </script>
+
+    </body>
+</html>
